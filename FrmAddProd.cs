@@ -30,7 +30,7 @@ namespace ExamenADONET
 		{
 			int resultado = 0;
 			try
-			{				
+			{
 				using (SqlConnection conexion = new SqlConnection(Constantes.cadenaConexion))
 				{
 					SqlCommand cmd = conexion.CreateCommand();
@@ -45,16 +45,29 @@ namespace ExamenADONET
 					resultado = Convert.ToInt32(cmd.ExecuteNonQuery());
 					cmd.Dispose();
 				}
-				if (resultado > 0) MessageBox.Show("Se Registro Correctamente","Informacion",MessageBoxButtons.OK, MessageBoxIcon.Information);
+				if (resultado > 0) MessageBox.Show("Se Registro Correctamente", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show("Error comunicarse con el Administrador" + ex.Message,"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+				MessageBox.Show("Error comunicarse con el Administrador" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 			finally
 			{
 				btnSave.Enabled = false;
 			}
+		}
+
+		private void txtstock_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+			{
+				e.Handled = true;
+			}
+		}
+
+		private void txtprecio_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			e.Handled = Utiles.solonumeros(txtprecio,Convert.ToInt32(e.KeyChar));
 		}
 	}
 }

@@ -25,7 +25,7 @@ namespace ExamenADONET
 
 		private void btnFind_Click(object sender, EventArgs e)
 		{
-			txtnombre.Clear(); txtprecio.Clear();txtstock.Clear();
+			txtnombre.Clear(); txtprecio.Clear(); txtstock.Clear();
 			if (txtId.Text.Trim().Length <= 0)
 			{
 				MessageBox.Show("Ingrese un ID Producto a Consultar", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -59,7 +59,7 @@ namespace ExamenADONET
 					}
 					cmd.Dispose();
 
-					if (listproducto.Count>0)
+					if (listproducto.Count > 0)
 					{
 						foreach (var item in listproducto)
 						{
@@ -73,11 +73,19 @@ namespace ExamenADONET
 					{
 						MessageBox.Show("IdProducto No Existe en la BD", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 					}
-				}				
+				}
 			}
 			catch (Exception ex)
 			{
 				MessageBox.Show("Error comunicarse con el Administrador" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
+
+		private void txtId_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+			{
+				e.Handled = true;
 			}
 		}
 	}

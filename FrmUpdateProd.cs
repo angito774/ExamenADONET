@@ -115,5 +115,26 @@ namespace ExamenADONET
 				btnUpdate.Enabled = false;
 			}
 		}
+
+		private void txtstock_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+			{
+				e.Handled = true;
+			}
+		}
+
+		private void txtId_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+			{
+				e.Handled = true;
+			}
+		}
+
+		private void txtprecio_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			e.Handled = Utiles.solonumeros(txtprecio, Convert.ToInt32(e.KeyChar));
+		}
 	}
 }

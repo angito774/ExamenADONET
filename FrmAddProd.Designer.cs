@@ -74,6 +74,7 @@
 			txtprecio.Name = "txtprecio";
 			txtprecio.Size = new Size(100, 23);
 			txtprecio.TabIndex = 3;
+			txtprecio.KeyPress += txtprecio_KeyPress;
 			// 
 			// label3
 			// 
@@ -91,6 +92,7 @@
 			txtstock.Name = "txtstock";
 			txtstock.Size = new Size(100, 23);
 			txtstock.TabIndex = 5;
+			txtstock.KeyPress += txtstock_KeyPress;
 			// 
 			// label4
 			// 

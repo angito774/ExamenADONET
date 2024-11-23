@@ -52,6 +52,7 @@
 			txtId.Name = "txtId";
 			txtId.Size = new Size(100, 23);
 			txtId.TabIndex = 22;
+			txtId.KeyPress += txtId_KeyPress;
 			// 
 			// label5
 			// 

@@ -98,16 +98,16 @@ namespace ExamenADONET
 					cmd.CommandTimeout = 120;
 					cmd.CommandType = CommandType.StoredProcedure;
 					cmd.CommandText = "usp_Productos_Delete";
-					cmd.Parameters.Add("@IdProducto", SqlDbType.Int).Value = Convert.ToInt32(txtId.Text);					
+					cmd.Parameters.Add("@IdProducto", SqlDbType.Int).Value = Convert.ToInt32(txtId.Text);
 					if (conexion.State == ConnectionState.Closed) conexion.Open();
 					resultado = Convert.ToInt32(cmd.ExecuteNonQuery());
 					cmd.Dispose();
 				}
 				if (resultado > 0)
-				{					
+				{
 					MessageBox.Show("Se Elimino Correctamente", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
 					txtId.Clear(); txtnombre.Clear();
-				}					
+				}
 			}
 			catch (Exception ex)
 			{
@@ -116,6 +116,14 @@ namespace ExamenADONET
 			finally
 			{
 				btnDelete.Enabled = false;
+			}
+		}
+
+		private void txtId_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+			{
+				e.Handled = true;
 			}
 		}
 	}
